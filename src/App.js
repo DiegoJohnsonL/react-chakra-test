@@ -1,42 +1,34 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { Box, SimpleGrid } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { ImageCarousel } from './components/ImageCarousel';
+import { ItemsDetails } from './components/ItemDetails';
+import { SellerCard } from './components/SellerCard';
+import { theme } from './theme';
 
 function App() {
-  return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
-  );
+	return (
+		<ChakraProvider theme={theme}>
+			<SimpleGrid
+				gap={12}
+				minHeight="100vh"
+				templateRows="0.2fr 1fr"
+				my="50px"
+				px="5%"
+				columns={{ md: 1, lg: 2 }}
+			>
+				<Box display={'flex'} alignContent={'center'} justifyContent={'center'}>
+					<ImageCarousel></ImageCarousel>
+				</Box>
+				<Box gridRow={'span 2'}>
+					<ItemsDetails></ItemsDetails>
+				</Box>
+				<Box display={'flex'} alignContent={'center'} justifyContent={'center'}>
+					<SellerCard></SellerCard>
+				</Box>
+			</SimpleGrid>
+		</ChakraProvider>
+	);
 }
 
 export default App;
